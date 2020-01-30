@@ -1,13 +1,13 @@
 import requests, json, datetime
 from credentials import weather_api_key
 
-def get_weather(city_name):
-    base_url = "http://api.openweathermap.org/data/2.5/weather?"
-    #city_name = "San Marino, US"
+
+def get_weather(location="San Marino, US"):
+    base_url = 'http://api.openweathermap.org/data/2.5/weather?'
 
     # complete url address
     # units=imperial(F), metric(C), and nothing is Kelvin
-    complete_url = base_url + "appid=" + weather_api_key + "&q=" + city_name + "&units=imperial"
+    complete_url = base_url + "appid=" + weather_api_key + "&q=" + location + "&units=imperial"
 
     # get method of requests module
     # return response object
@@ -56,8 +56,8 @@ def get_weather(city_name):
         # the 0th index of z
         description = z[0]["description"]
 
-        response_msg = "\nCity: {} \nTemperature: {} \nHumidity: {} \nDescription: {}" \
-            .format(current_city, str(current_temp), str(current_hum), str(description))
+        response_msg = "\nLocation: {} \nTemperature: {} \nHumidity: {} \nDescription: {}" \
+            .format(location, str(current_temp), str(current_hum), str(description))
 
     else:
         response_msg = "\nCity Not Found "
@@ -65,4 +65,3 @@ def get_weather(city_name):
     return "\n" + time.strftime("%c") + response_msg
 
 
-#print(get_weather())
