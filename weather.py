@@ -1,27 +1,27 @@
 import requests, json, datetime
 from credentials import weather_api_key
 
-base_url = "http://api.openweathermap.org/data/2.5/weather?"
-city_name = "San Marino, US"
+def get_weather(city_name):
+    base_url = "http://api.openweathermap.org/data/2.5/weather?"
+    #city_name = "San Marino, US"
 
-# complete url address
-# units=imperial(F), metric(C), and nothing is Kelvin
-complete_url = base_url + "appid=" + weather_api_key + "&q=" + city_name + "&units=imperial"
+    # complete url address
+    # units=imperial(F), metric(C), and nothing is Kelvin
+    complete_url = base_url + "appid=" + weather_api_key + "&q=" + city_name + "&units=imperial"
 
-# get method of requests module
-# return response object
-response = requests.get(complete_url)
+    # get method of requests module
+    # return response object
+    response = requests.get(complete_url)
 
-# json method of response object
-# convert json format data into
-# python format data
-x = response.json()
+    # json method of response object
+    # convert json format data into
+    # python format data
+    x = response.json()
 
-# grab current time D/M/Y time
-time = datetime.datetime.now()
+    # grab current time D/M/Y time
+    time = datetime.datetime.now()
 
 
-def get_weather():
     response_msg = ""
     # Now x contains list of nested dictionaries
     # Check the value of "cod" key is equal to

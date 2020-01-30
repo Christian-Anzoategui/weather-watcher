@@ -4,12 +4,12 @@ import weather
 
 client = Client(account_sid, auth_token)
 
-my_msg = weather.get_weather()
+my_msg = weather.get_weather('San Marino, US')
 message = client.messages \
                 .create(
                      body=my_msg,
                      from_=my_twilio,
-                     to=my_baby
+                     to=my_cell
                  )
 
 print(message.sid)
